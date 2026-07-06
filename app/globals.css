@@ -1,0 +1,311 @@
+@import "tailwindcss";
+
+/*
+  Geist design system, dark-first. Inherited from the sibling next-isr-lab.
+  Color usage is semantic:
+    - Surfaces:  bg-background-100 (page), bg-background-200 (elevated panel/card)
+    - Borders:   border-gray-400 (subtle), border-gray-300 (hover/strong)
+    - Text:      text-gray-1000 (primary), text-gray-900 (secondary),
+                 text-gray-700 (muted), text-gray-500 (faint/placeholder)
+    - Signals:   blue-700 (info / agent / network), green-700 (markdown / token savings),
+                 amber-700 (browser / html / warning), red-700 (error / expensive),
+                 purple-700 (discovery), teal-700 (stream / raw)
+*/
+
+@theme {
+  /* Surfaces */
+  --color-background-100: #0a0a0a;
+  --color-background-200: #121212;
+  --color-background-300: #1a1a1a;
+  --color-background-code: #000000;
+
+  /* Gray scale (dark) */
+  --color-gray-100: #1a1a1a;
+  --color-gray-200: #1f1f1f;
+  --color-gray-300: #3a3a3a;
+  --color-gray-400: #2a2a2a;
+  --color-gray-500: #6e6e6e;
+  --color-gray-600: #7d7d7d;
+  --color-gray-700: #8f8f8f;
+  --color-gray-800: #a8a8a8;
+  --color-gray-900: #c4c4c4;
+  --color-gray-1000: #ededed;
+
+  /* Blue, agent, info, network */
+  --color-blue-100: #0a1a2e;
+  --color-blue-400: #0a4a8a;
+  --color-blue-600: #0070f3;
+  --color-blue-700: #3291ff;
+  --color-blue-900: #6cb2ff;
+
+  /* Green, markdown, token savings */
+  --color-green-100: #0c1f14;
+  --color-green-600: #46a758;
+  --color-green-700: #3fb950;
+  --color-green-900: #6ee787;
+
+  /* Amber, browser, html, warning */
+  --color-amber-100: #241a04;
+  --color-amber-600: #f5a623;
+  --color-amber-700: #ffb224;
+  --color-amber-900: #ffd596;
+
+  /* Red, error, expensive */
+  --color-red-100: #2a1011;
+  --color-red-600: #e5484d;
+  --color-red-700: #ff5a5f;
+  --color-red-900: #ff9ca0;
+
+  /* Purple, discovery, sitemap */
+  --color-purple-100: #1c1230;
+  --color-purple-700: #a371f7;
+  --color-purple-900: #c9a6ff;
+
+  /* Teal, raw response, stream */
+  --color-teal-100: #04201d;
+  --color-teal-700: #2dd4bf;
+  --color-teal-900: #7ff0e2;
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "SF Mono", monospace;
+
+  /* Typography scale (Geist) */
+  --text-heading-72: 4.5rem;
+  --text-heading-72--line-height: 1.05;
+  --text-heading-72--letter-spacing: -0.045em;
+  --text-heading-56: 3.5rem;
+  --text-heading-56--line-height: 1.08;
+  --text-heading-56--letter-spacing: -0.04em;
+  --text-heading-40: 2.5rem;
+  --text-heading-40--line-height: 1.1;
+  --text-heading-40--letter-spacing: -0.035em;
+  --text-heading-32: 2rem;
+  --text-heading-32--line-height: 1.15;
+  --text-heading-32--letter-spacing: -0.03em;
+  --text-heading-24: 1.5rem;
+  --text-heading-24--line-height: 1.25;
+  --text-heading-24--letter-spacing: -0.025em;
+  --text-heading-20: 1.25rem;
+  --text-heading-20--line-height: 1.3;
+  --text-heading-20--letter-spacing: -0.02em;
+
+  --text-copy-16: 1rem;
+  --text-copy-16--line-height: 1.6;
+  --text-copy-14: 0.875rem;
+  --text-copy-14--line-height: 1.6;
+
+  --text-label-16: 1rem;
+  --text-label-16--line-height: 1.4;
+  --text-label-14: 0.875rem;
+  --text-label-14--line-height: 1.4;
+  --text-label-13: 0.8125rem;
+  --text-label-13--line-height: 1.4;
+  --text-label-12: 0.75rem;
+  --text-label-12--line-height: 1.35;
+
+  /* Focus ring (Geist) */
+  --ds-focus-ring: 0 0 0 2px var(--color-background-100), 0 0 0 4px var(--color-blue-600);
+
+  /* Animation keyframes */
+  --animate-fade-in: fade-in 0.2s ease-out;
+}
+
+/* Mono variants of the label/copy utilities */
+@utility text-label-12-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-label-12);
+  line-height: var(--text-label-12--line-height);
+}
+@utility text-label-13-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-label-13);
+  line-height: var(--text-label-13--line-height);
+}
+@utility text-label-14-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-label-14);
+  line-height: var(--text-label-14--line-height);
+}
+@utility text-copy-14-mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-copy-14);
+  line-height: var(--text-copy-14--line-height);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-background-100);
+  color: var(--color-gray-1000);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-blue-600) 35%, transparent);
+  color: var(--color-gray-1000);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gray-300) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--color-gray-300);
+  border-radius: 9999px;
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--color-gray-300);
+}
+input[type="range"]::-moz-range-track {
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--color-gray-300);
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -6px;
+  height: 16px;
+  width: 16px;
+  border-radius: 9999px;
+  background: var(--color-blue-700);
+  border: 2px solid var(--color-background-100);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+}
+input[type="range"]::-moz-range-thumb {
+  height: 16px;
+  width: 16px;
+  border: 2px solid var(--color-background-100);
+  border-radius: 9999px;
+  background: var(--color-blue-700);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Markdown article rendering (used by the blog post HTML pages) */
+.prose-article h1 {
+  font-size: var(--text-heading-40);
+  line-height: var(--text-heading-40--line-height);
+  letter-spacing: var(--text-heading-40--letter-spacing);
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.prose-article h2 {
+  font-size: var(--text-heading-24);
+  line-height: var(--text-heading-24--line-height);
+  letter-spacing: var(--text-heading-24--letter-spacing);
+  font-weight: 600;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+.prose-article h3 {
+  font-size: var(--text-heading-20);
+  line-height: var(--text-heading-20--line-height);
+  letter-spacing: var(--text-heading-20--letter-spacing);
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+.prose-article p {
+  font-size: var(--text-copy-16);
+  line-height: var(--text-copy-16--line-height);
+  color: var(--color-gray-900);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.prose-article a {
+  color: var(--color-blue-700);
+  text-decoration: underline;
+}
+.prose-article ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-gray-900);
+}
+.prose-article ol {
+  list-style: decimal;
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: var(--color-gray-900);
+}
+.prose-article li {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--text-copy-16);
+  line-height: var(--text-copy-16--line-height);
+}
+.prose-article blockquote {
+  border-left: 3px solid var(--color-gray-300);
+  padding-left: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-gray-700);
+  font-style: italic;
+}
+.prose-article pre {
+  background: var(--color-background-code);
+  border: 1px solid var(--color-gray-400);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-copy-14);
+  line-height: 1.65;
+}
+.prose-article code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+.prose-article p code,
+.prose-article li code {
+  background: var(--color-background-300);
+  border: 1px solid var(--color-gray-400);
+  border-radius: 0.25rem;
+  padding: 0.1rem 0.3rem;
+}
+.prose-article hr {
+  border: none;
+  border-top: 1px solid var(--color-gray-400);
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
