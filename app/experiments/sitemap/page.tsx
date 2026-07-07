@@ -71,27 +71,17 @@ ${posts.map((p) => `  <url><loc>https://example.com/blog/${p.slug}</loc></url>`)
         and time.
       </Callout>
 
-      <h2 className="mt-10 text-heading-24">Probe both sitemaps</h2>
+      <h2 className="mt-10 text-heading-24">Probe the sitemap</h2>
       <p className="mt-2 max-w-2xl text-copy-14 text-gray-900">
-        Use the AgentProbe to fetch both sitemaps. The XML sitemap returns
-        XML regardless of the Accept header (it&apos;s a dedicated route).
-        The markdown sitemap returns markdown. Compare the payload sizes:
+        Fetch the canonical <span className="text-gray-1000">/blog/sitemap.xml</span>{" "}
+        with both headers. A browser (<code>Accept: text/html</code>) gets the
+        XML sitemap; an agent (<code>Accept: text/markdown</code>) gets the
+        markdown version from the same URL. Use{" "}
+        <span className="text-gray-1000">Compare</span> to see the payload and
+        token savings:
       </p>
 
-      <div className="mt-4 grid gap-4">
-        <div>
-          <p className="mb-2 text-label-13-mono text-gray-700">
-            XML sitemap: <span className="text-gray-1000">/blog/sitemap.xml</span>
-          </p>
-          <AgentProbe path="/blog/sitemap.xml" defaultMode="browser" />
-        </div>
-        <div>
-          <p className="mb-2 text-label-13-mono text-gray-700">
-            Markdown sitemap: <span className="text-gray-1000">/blog/sitemap.md</span>
-          </p>
-          <AgentProbe path="/blog/sitemap.md" defaultMode="agent" />
-        </div>
-      </div>
+      <AgentProbe path="/blog/sitemap.xml" defaultMode="compare" className="mt-4" />
 
       <h2 className="mt-10 text-heading-24">The markdown sitemap implementation</h2>
       <CodeBlock
