@@ -12,7 +12,7 @@ export const posts: BlogPost[] = [
     slug: "making-agent-friendly-pages",
     title: "Making agent-friendly pages with content negotiation",
     date: "2026-02-03",
-    author: "Zach Cowan",
+    author: "Mac Carlton",
     excerpt:
       "Agents fetch web pages to answer questions and complete tasks. Content negotiation lets them request just the text, without the markup that confuses them and wastes their context window.",
     content: `# Making agent-friendly pages with content negotiation
@@ -77,7 +77,7 @@ For an implementation reference, see the [Vercel knowledge base](https://vercel.
     slug: "the-accept-header-field-guide",
     title: "The Accept header field guide",
     date: "2026-01-27",
-    author: "Mitul Shah",
+    author: "Mac Carlton",
     excerpt:
       "The Accept header is the handshake between agent and server. Learn how it works, what agents actually send, and how to test your server's response to every variation.",
     content: `# The Accept header field guide
@@ -168,7 +168,7 @@ If you need precise q-value handling, you'd parse the Accept header in middlewar
     slug: "markdown-sitemaps-for-agent-discovery",
     title: "Markdown sitemaps for agent discovery",
     date: "2026-01-20",
-    author: "Zach Cowan",
+    author: "Mac Carlton",
     excerpt:
       "XML sitemaps are flat URL lists with no context. Markdown sitemaps give agents a structured table of contents with titles, hierarchy, and meaning.",
     content: `# Markdown sitemaps for agent discovery
@@ -265,7 +265,7 @@ The sitemap itself can support content negotiation. An agent sending \`Accept: t
     slug: "token-efficiency-in-practice",
     title: "Token efficiency in practice",
     date: "2026-01-13",
-    author: "Mitul Shah",
+    author: "Mac Carlton",
     excerpt:
       "Every byte an agent fetches costs tokens. Measuring the real-world savings of markdown over HTML across multiple pages, and why it matters for agent economics.",
     content: `# Token efficiency in practice

@@ -8,9 +8,21 @@ import { getAllPosts } from "@/lib/content";
 
 export const metadata: Metadata = { title: "01 · Same URL, two representations" };
 
-export default function NegotiationPage() {
+export default async function NegotiationPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ path?: string }>;
+}) {
   const posts = getAllPosts();
-  const featured = posts[0];
+  const { path } = await searchParams;
+
+  // The "open in AgentProbe" badge on a blog post links here with
+  // ?path=/blog/<slug>. Feature that post so the probe reflects the post
+  // the reader came from — otherwise the link always lands on posts[0].
+  const requestedSlug = path?.replace(/^\/blog\//, "");
+  const featured =
+    posts.find((post) => post.slug === requestedSlug) ?? posts[0];
+  const rest = posts.filter((post) => post.slug !== featured.slug);
 
   return (
     <div className="py-12">
@@ -33,7 +45,9 @@ export default function NegotiationPage() {
         see the savings. Then click <span className="text-gray-1000">Fetch</span>.
       </Callout>
 
-      <h2 className="mt-10 text-heading-24">Try it: {featured.title}</h2>
+      <h2 id="try" className="mt-10 scroll-mt-24 text-heading-24">
+        Try it: {featured.title}
+      </h2>
       <p className="mt-2 max-w-2xl text-copy-14 text-gray-900">
         This is a real blog post at <code className="text-gray-1000">/blog/{featured.slug}</code>.
         The AgentProbe fetches it with both headers and shows you exactly
@@ -52,7 +66,7 @@ export default function NegotiationPage() {
         probe:
       </p>
       <div className="mt-4 grid gap-3">
-        {posts.slice(1).map((post) => (
+        {rest.map((post) => (
           <Card key={post.slug} className="p-4">
             <p className="text-heading-20">{post.title}</p>
             <p className="mt-1 text-copy-14 text-gray-700">{post.excerpt}</p>

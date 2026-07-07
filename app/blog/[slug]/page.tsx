@@ -70,8 +70,8 @@ export default async function BlogPostPage({
       />
 
       <div className="mt-12 flex flex-wrap gap-2">
-        <Link href={`/experiments/negotiation?path=/blog/${post.slug}`}>
-          <Badge tone="blue" mono>open in AgentProbe</Badge>
+        <Link href={`/experiments/negotiation?path=/blog/${post.slug}#try`}>
+          <Badge tone="blue" mono>probe this page</Badge>
         </Link>
         <Link href="/blog/sitemap.md">
           <Badge tone="green" mono>markdown sitemap</Badge>
